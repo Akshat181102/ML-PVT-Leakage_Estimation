@@ -1,0 +1,374 @@
+* 32nm_MGK 3-bit CLA (vector 93, corner 0)
+* inputs a0=1 a1=0 a2=1 b0=1 b1=1 b2=0 c0=1
+* corner 0: VDD=1.00161 V  T=44.0023 C; 34 gates, 180 transistors
+* junctions on every transistor: AS=AD=W*Ldiff, PS=PD=2(W+Ldiff), Ldiff=64 nm
+.options gmin=1e-18 abstol=1e-18 reltol=1e-6 vntol=1e-9
+.options temp=44.00232156
+
+VDD vdd 0 DC 1.001608381
+VINA0 a0 0 DC 1.001608381
+VINA1 a1 0 DC 0
+VINA2 a2 0 DC 1.001608381
+VINB0 b0 0 DC 1.001608381
+VINB1 b1 0 DC 1.001608381
+VINB2 b2 0 DC 0
+VINC0 c0 0 DC 1.001608381
+* N0: NAND2(a0, b0) -> n0
+MN0_MP1 n0 a0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MN0_MP2 n0 b0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MN0_MN1 n0 a0 n0_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MN0_MN2 n0_x b0 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+* G0: INV(n0) -> g0
+MG0_MP1 g0 n0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MG0_MN1 g0 n0 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* O0: OR2(a0, b0) -> o0
+MO0_MP1 o0_y a0 vdd vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MO0_MP2 o0_n1 b0 o0_y vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MO0_MN1 o0_n1 a0 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MO0_MN2 o0_n1 b0 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MO0_MP3 o0 o0_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MO0_MN3 o0 o0_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* P0: AND2(o0, n0) -> p0
+MP0_MP1 p0_n1 o0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP0_MP2 p0_n1 n0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP0_MN1 p0_n1 o0 p0_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP0_MN2 p0_x n0 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP0_MP3 p0 p0_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP0_MN3 p0 p0_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* N1: NAND2(a1, b1) -> n1
+MN1_MP1 n1 a1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MN1_MP2 n1 b1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MN1_MN1 n1 a1 n1_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MN1_MN2 n1_x b1 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+* G1: INV(n1) -> g1
+MG1_MP1 g1 n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MG1_MN1 g1 n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* O1: OR2(a1, b1) -> o1
+MO1_MP1 o1_y a1 vdd vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MO1_MP2 o1_n1 b1 o1_y vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MO1_MN1 o1_n1 a1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MO1_MN2 o1_n1 b1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MO1_MP3 o1 o1_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MO1_MN3 o1 o1_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* P1: AND2(o1, n1) -> p1
+MP1_MP1 p1_n1 o1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP1_MP2 p1_n1 n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP1_MN1 p1_n1 o1 p1_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP1_MN2 p1_x n1 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP1_MP3 p1 p1_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP1_MN3 p1 p1_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* N2: NAND2(a2, b2) -> n2
+MN2_MP1 n2 a2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MN2_MP2 n2 b2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MN2_MN1 n2 a2 n2_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MN2_MN2 n2_x b2 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+* G2: INV(n2) -> g2
+MG2_MP1 g2 n2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MG2_MN1 g2 n2 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* O2: OR2(a2, b2) -> o2
+MO2_MP1 o2_y a2 vdd vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MO2_MP2 o2_n1 b2 o2_y vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MO2_MN1 o2_n1 a2 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MO2_MN2 o2_n1 b2 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MO2_MP3 o2 o2_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MO2_MN3 o2 o2_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* P2: AND2(o2, n2) -> p2
+MP2_MP1 p2_n1 o2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP2_MP2 p2_n1 n2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP2_MN1 p2_n1 o2 p2_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP2_MN2 p2_x n2 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP2_MP3 p2 p2_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MP2_MN3 p2 p2_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* T0: AND2(p0, c0) -> t0
+MT0_MP1 t0_n1 p0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MT0_MP2 t0_n1 c0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MT0_MN1 t0_n1 p0 t0_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MT0_MN2 t0_x c0 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MT0_MP3 t0 t0_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MT0_MN3 t0 t0_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* K1: OR2(g0, t0) -> c1
+MK1_MP1 k1_y g0 vdd vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MK1_MP2 k1_n1 t0 k1_y vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MK1_MN1 k1_n1 g0 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MK1_MN2 k1_n1 t0 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MK1_MP3 c1 k1_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MK1_MN3 c1 k1_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* U1: AND2(p1, g0) -> u1
+MU1_MP1 u1_n1 p1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MU1_MP2 u1_n1 g0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MU1_MN1 u1_n1 p1 u1_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MU1_MN2 u1_x g0 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MU1_MP3 u1 u1_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MU1_MN3 u1 u1_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* U2: AND2(p1, t0) -> u2
+MU2_MP1 u2_n1 p1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MU2_MP2 u2_n1 t0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MU2_MN1 u2_n1 p1 u2_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MU2_MN2 u2_x t0 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MU2_MP3 u2 u2_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MU2_MN3 u2 u2_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* V1: OR2(g1, u1) -> v1
+MV1_MP1 v1_y g1 vdd vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MV1_MP2 v1_n1 u1 v1_y vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MV1_MN1 v1_n1 g1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MV1_MN2 v1_n1 u1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MV1_MP3 v1 v1_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MV1_MN3 v1 v1_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* K2: OR2(v1, u2) -> c2
+MK2_MP1 k2_y v1 vdd vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MK2_MP2 k2_n1 u2 k2_y vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MK2_MN1 k2_n1 v1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MK2_MN2 k2_n1 u2 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MK2_MP3 c2 k2_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MK2_MN3 c2 k2_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* W1: AND2(p2, g1) -> w1
+MW1_MP1 w1_n1 p2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW1_MP2 w1_n1 g1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW1_MN1 w1_n1 p2 w1_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW1_MN2 w1_x g1 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW1_MP3 w1 w1_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW1_MN3 w1 w1_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* W2: AND2(p2, p1) -> w2
+MW2_MP1 w2_n1 p2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW2_MP2 w2_n1 p1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW2_MN1 w2_n1 p2 w2_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW2_MN2 w2_x p1 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW2_MP3 w2 w2_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW2_MN3 w2 w2_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* W3: AND2(w2, g0) -> w3
+MW3_MP1 w3_n1 w2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW3_MP2 w3_n1 g0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW3_MN1 w3_n1 w2 w3_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW3_MN2 w3_x g0 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW3_MP3 w3 w3_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW3_MN3 w3 w3_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* W4: AND2(p2, u2) -> w4
+MW4_MP1 w4_n1 p2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW4_MP2 w4_n1 u2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW4_MN1 w4_n1 p2 w4_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW4_MN2 w4_x u2 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW4_MP3 w4 w4_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MW4_MN3 w4 w4_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* X1: OR2(g2, w1) -> x1
+MX1_MP1 x1_y g2 vdd vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MX1_MP2 x1_n1 w1 x1_y vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MX1_MN1 x1_n1 g2 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MX1_MN2 x1_n1 w1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MX1_MP3 x1 x1_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MX1_MN3 x1 x1_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* X2: OR2(x1, w3) -> x2
+MX2_MP1 x2_y x1 vdd vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MX2_MP2 x2_n1 w3 x2_y vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MX2_MN1 x2_n1 x1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MX2_MN2 x2_n1 w3 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MX2_MP3 x2 x2_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MX2_MN3 x2 x2_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* K3: OR2(x2, w4) -> c3
+MK3_MP1 k3_y x2 vdd vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MK3_MP2 k3_n1 w4 k3_y vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MK3_MN1 k3_n1 x2 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MK3_MN2 k3_n1 w4 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MK3_MP3 c3 k3_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MK3_MN3 c3 k3_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* SN0: NAND2(p0, c0) -> sn0
+MSN0_MP1 sn0 p0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MSN0_MP2 sn0 c0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MSN0_MN1 sn0 p0 sn0_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MSN0_MN2 sn0_x c0 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+* SO0: OR2(p0, c0) -> so0
+MSO0_MP1 so0_y p0 vdd vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MSO0_MP2 so0_n1 c0 so0_y vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MSO0_MN1 so0_n1 p0 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MSO0_MN2 so0_n1 c0 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MSO0_MP3 so0 so0_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MSO0_MN3 so0 so0_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* S0: AND2(so0, sn0) -> s0
+MS0_MP1 s0_n1 so0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS0_MP2 s0_n1 sn0 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS0_MN1 s0_n1 so0 s0_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS0_MN2 s0_x sn0 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS0_MP3 s0 s0_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS0_MN3 s0 s0_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* SN1: NAND2(p1, c1) -> sn1
+MSN1_MP1 sn1 p1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MSN1_MP2 sn1 c1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MSN1_MN1 sn1 p1 sn1_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MSN1_MN2 sn1_x c1 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+* SO1: OR2(p1, c1) -> so1
+MSO1_MP1 so1_y p1 vdd vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MSO1_MP2 so1_n1 c1 so1_y vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MSO1_MN1 so1_n1 p1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MSO1_MN2 so1_n1 c1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MSO1_MP3 so1 so1_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MSO1_MN3 so1 so1_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* S1: AND2(so1, sn1) -> s1
+MS1_MP1 s1_n1 so1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS1_MP2 s1_n1 sn1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS1_MN1 s1_n1 so1 s1_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS1_MN2 s1_x sn1 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS1_MP3 s1 s1_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS1_MN3 s1 s1_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* SN2: NAND2(p2, c2) -> sn2
+MSN2_MP1 sn2 p2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MSN2_MP2 sn2 c2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MSN2_MN1 sn2 p2 sn2_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MSN2_MN2 sn2_x c2 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+* SO2: OR2(p2, c2) -> so2
+MSO2_MP1 so2_y p2 vdd vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MSO2_MP2 so2_n1 c2 so2_y vdd pmos W=2.56e-07 L=3.2e-08 AS=1.6384e-14 AD=1.6384e-14 PS=6.4e-07 PD=6.4e-07
+MSO2_MN1 so2_n1 p2 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MSO2_MN2 so2_n1 c2 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+MSO2_MP3 so2 so2_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MSO2_MN3 so2 so2_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+* S2: AND2(so2, sn2) -> s2
+MS2_MP1 s2_n1 so2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS2_MP2 s2_n1 sn2 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS2_MN1 s2_n1 so2 s2_x 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS2_MN2 s2_x sn2 0 0 nmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS2_MP3 s2 s2_n1 vdd vdd pmos W=1.28e-07 L=3.2e-08 AS=8.192e-15 AD=8.192e-15 PS=3.84e-07 PD=3.84e-07
+MS2_MN3 s2 s2_n1 0 0 nmos W=6.4e-08 L=3.2e-08 AS=4.096e-15 AD=4.096e-15 PS=2.56e-07 PD=2.56e-07
+
+* model cards from 32nm_MGK.pm, process parameters of this corner
+.model  nmos  nmos level = 54 
+
++version = 4.0             binunit = 1               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 1               igbmod  = 1               geomod  = 1             
++diomod  = 1               rdsmod  = 0               rbodymod= 1               rgatemod= 1             
++permod  = 1               acnqsmod= 0               trnqsmod= 0             
+
++tnom    = 27              toxe    = 8.022383701e-10        toxp    = 5e-010          toxm    = 7.5e-010      
++dtox    = 2.5e-010        epsrox  = 3.9             wint    = 5e-009          lint    = 1.95e-009     
++ll      = 0               wl      = 0               lln     = 1               wln     = 1             
++lw      = 0               ww      = 0               lwn     = 1               wwn     = 1             
++lwl     = 0               wwl     = 0               xpart   = 0               toxref  = 7.5e-010         xl      = -14e-9
++dlcig   = 1.95e-009     
+
++vth0    = 0.3880507204          k1      = 0.2             k2      = 0               k3      = 0             
++k3b     = 0               w0      = 2.5e-006        dvt0    = 1               dvt1    = 2             
++dvt2    = 0               dvt0w   = 0               dvt1w   = 0               dvt2w   = 0             
++dsub    = 0.078           minv    = 0.05            voffl   = 0               dvtp0   = 1e-011        
++dvtp1   = 0.1             lpe0    = 0               lpeb    = 0               xj      = 1.071840275e-08        
++ngate   = 1e+023          ndep    = 9.020803246e+18        nsd     = 2e+020          phin    = 0             
++cdsc    = 0               cdscb   = 0               cdscd   = 0               cit     = 0             
++voff    = -0.13           nfactor = 2.1             eta0    = 0.005           etab    = 0             
++vfb     = -1.058          u0      = 0.0215975414          ua      = -5e-010         ub      = 1.7e-018      
++uc      = 0               vsat    = 182130          a0      = 1               ags     = 0             
++a1      = 0               a2      = 1               b0      = 0               b1      = 0             
++keta    = 0.04            dwg     = 0               dwb     = 0               pclm    = 0.06          
++pdiblc1 = 0.001           pdiblc2 = 0.001           pdiblcb = -0.005          drout   = 0.5           
++pvag    = 1e-020          delta   = 0.01            pscbe1  = 2.0e+009        pscbe2  = 1e-007        
++fprout  = 0.2             pdits   = 0.01            pditsd  = 0.23            pditsl  = 2300000       
++rsh     = 5               rdsw    = 80              rsw     = 40              rdw     = 40            
++rdswmin = 0               rdwmin  = 0               rswmin  = 0               prwg    = 0             
++prwb    = 0               wr      = 1               alpha0  = 0.074           alpha1  = 0.005         
++beta0   = 30              agidl   = 0.0002          bgidl   = 2.1e+009        cgidl   = 0.0002        
++egidl   = 0.8             aigbacc = 0.012           bigbacc = 0.0028          cigbacc = 0.002         
++nigbacc = 1               aigbinv = 0.014           bigbinv = 0.004           cigbinv = 0.004         
++eigbinv = 1.1             nigbinv = 3               aigc    = 0.020014        bigc    = 0.0027432     
++cigc    = 0.002           aigsd   = 0.020014        bigsd   = 0.0027432       cigsd   = 0.002         
++nigc    = 1               poxedge = 1               pigcd   = 1               ntox    = 1             
++xrcrg1  = 12              xrcrg2  = 5             
+
++cgso    = 9e-011          cgdo    = 9e-011          cgbo    = 0               cgdl    = 7.5e-013      
++cgsl    = 7.5e-013        clc     = 1e-007          cle     = 0.6             cf      = 1.1e-010      
++ckappas = 0.6             ckappad = 0.6             vfbcv   = -1              acde    = 1             
++moin    = 15              noff    = 1               voffcv  = 0             
+
++kt1     = -0.154          kt1l    = 0               kt2     = 0.022           ute     = -1.1          
++ua1     = 1e-009          ub1     = -1e-018         uc1     = -5.6e-011       prt     = 0             
++at      = 33000         
+
++fnoimod = 1               tnoimod = 0               noia    = 6.25e+041       noib    = 3.125e+026    
++noic    = 8.75e+009       em      = 41000000        af      = 1               ef      = 1             
++kf      = 0               tnoia   = 1.5             tnoib   = 3.5             ntnoi   = 1             
+
++jss     = 1.2e-006        jsws    = 2.4e-013        jswgs   = 2.4e-013        njs     = 1             
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 10              xjbvs   = 1             
++jsd     = 1.2e-006        jswd    = 2.4e-013        jswgd   = 2.4e-013        xjbvd   = 1             
++pbs     = 1               cjs     = 0.0018          mjs     = 0.5             pbsws   = 1             
++cjsws   = 1.2e-010        mjsws   = 0.33            cjswgs  = 2.1e-010        cjd     = 0.0018        
++cjswd   = 1.2e-010        mjswd   = 0.33            pbswgd  = 1               cjswgd  = 2.1e-010      
++mjswgd  = 0.33            tpb     = 0               tcj     = 0               tpbsw   = 0             
++tcjsw   = 0               tpbswg  = 0               tcjswg  = 0               xtis    = 3             
+
++dmcg    = 0               dmci    = 0               dmdg    = 0               dmcgt   = 0             
++dwj     = 0               xgw     = 0               xgl     = 0             
+
++rshg    = 0.4             gbmin   = 1e-010          rbpb    = 5               rbpd    = 15            
++rbps    = 15              rbdb    = 15              rbsb    = 15              ngcon   = 1
+.model  pmos pmos level = 54 
+
++version = 4.0             binunit = 1               paramchk= 1               mobmod  = 0
++capmod  = 2               igcmod  = 1               igbmod  = 1               geomod  = 1
++diomod  = 1               rdsmod  = 0               rbodymod= 1               rgatemod= 1
++permod  = 1               acnqsmod= 0               trnqsmod= 0
+
++tnom    = 27              toxe    = 7.506016938e-10        toxp    = 5e-010          toxm    = 7.7e-010
++dtox    = 2.7e-010        epsrox  = 3.9             wint    = 5e-009          lint    = 1.95e-009
++ll      = 0               wl      = 0               lln     = 1               wln     = 1
++lw      = 0               ww      = 0               lwn     = 1               wwn     = 1
++lwl     = 0               wwl     = 0               xpart   = 0               toxref  = 7.7e-010         xl      = -14e-9
++dlcig   = 1.95e-009
+
++vth0    = -0.2270641866        k1      = 0.2             k2      = -0.01           k3      = 0
++k3b     = 0               w0      = 2.5e-006        dvt0    = 1               dvt1    = 2
++dvt2    = -0.032          dvt0w   = 0               dvt1w   = 0               dvt2w   = 0
++dsub    = 0.1             minv    = 0.05            voffl   = 0               dvtp0   = 1e-011
++dvtp1   = 0.05            lpe0    = 0               lpeb    = 0               xj      = 9.659987207e-09
++ngate   = 1e+023          ndep    = 3.246382932e+18        nsd     = 2e+020          phin    = 0
++cdsc    = 0               cdscb   = 0               cdscd   = 0               cit     = 0
++voff    = -0.13           nfactor = 2.1             eta0    = 0.0042          etab    = 0
++vfb     = -1.058          u0      = 0.003312515615         ua      = -5e-010         ub      = 1.6e-018
++uc      = 0               vsat    = 78000           a0      = 1               ags     = 1e-020
++a1      = 0               a2      = 1               b0      = 0               b1      = 0
++keta    = -0.047          dwg     = 0               dwb     = 0               pclm    = 0.1
++pdiblc1 = 0.001           pdiblc2 = 0.001           pdiblcb = 3.4e-008        drout   = 0.6
++pvag    = 1e-020          delta   = 0.01            pscbe1  = 2e+009          pscbe2  = 9.58e-007
++fprout  = 0.2             pdits   = 0.08            pditsd  = 0.23            pditsl  = 2300000
++rsh     = 5               rdsw    = 80              rsw     = 40              rdw     = 40
++rdswmin = 0               rdwmin  = 0               rswmin  = 0               prwg    = 0
++prwb    = 0               wr      = 1               alpha0  = 0.074           alpha1  = 0.005
++beta0   = 30              agidl   = 0.0002          bgidl   = 2.1e+009        cgidl   = 0.0002
++egidl   = 0.8             aigbacc = 0.012           bigbacc = 0.0028          cigbacc = 0.002
++nigbacc = 1               aigbinv = 0.014           bigbinv = 0.004           cigbinv = 0.004
++eigbinv = 1.1             nigbinv = 3               aigc    = 0.011942        bigc    = 0.0012217
++cigc    = 0.0008          aigsd   = 0.011942        bigsd   = 0.0012217       cigsd   = 0.0008
++nigc    = 1               poxedge = 1               pigcd   = 1               ntox    = 1
++xrcrg1  = 12              xrcrg2  = 5
+
++cgso    = 9e-011          cgdo    = 9e-011          cgbo    = 0               cgdl    = 3e-011
++cgsl    = 3e-011          clc     = 1e-007          cle     = 0.6             cf      = 1.1e-010
++ckappas = 0.6             ckappad = 0.6             vfbcv   = -1              acde    = 1
++moin    = 15              noff    = 1               voffcv  = 0
+
++kt1     = -0.14           kt1l    = 0               kt2     = 0.022           ute     = -1.1
++ua1     = 1e-009          ub1     = -1e-018         uc1     = -5.6e-011       prt     = 0
++at      = 33000
+
++fnoimod = 1               tnoimod = 0               noia    = 6.25e+041       noib    = 3.125e+026
++noic    = 8.75e+009       em      = 41000000        af      = 1               ef      = 1
++kf      = 0               tnoia   = 1.5             tnoib   = 3.5             ntnoi   = 1
+
++jss     = 2e-007          jsws    = 4e-013          jswgs   = 4e-013          njs     = 1
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 10              xjbvs   = 1
++jsd     = 2e-007          jswd    = 4e-013          jswgd   = 4e-013          xjbvd   = 1
++pbs     = 1               cjs     = 0.0015          mjs     = 0.5             pbsws   = 1
++cjsws   = 9.4e-011        mjsws   = 0.33            cjswgs  = 2e-010          cjd     = 0.0015
++cjswd   = 9.4e-011        mjswd   = 0.33            pbswgd  = 1               cjswgd  = 2e-010
++mjswgd  = 0.33            tpb     = 0               tcj     = 0               tpbsw   = 0
++tcjsw   = 0               tpbswg  = 0               tcjswg  = 0               xtis    = 3
+
++dmcg    = 0               dmdg    = 0               dmcgt   = 0               xgw     = 0
++xgl     = 0
+
++rshg    = 0.1             gbmin   = 1e-012          rbpb    = 50              rbpd    = 50
++rbps    = 50              rbdb    = 50              rbsb    = 50              ngcon   = 1
+
+.control
+set filetype=ascii
+op
+write out.raw
+quit
+.endc
+
+.end

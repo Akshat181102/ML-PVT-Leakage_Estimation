@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+
+# Outputs written when the code is run from 09_code/ (the submitted results are in the numbered folders)
+09_code/data/
+09_code/netlists/
+09_code/trained_models/
+09_code/results/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store

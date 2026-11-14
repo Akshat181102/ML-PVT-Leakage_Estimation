@@ -1,0 +1,50 @@
+{
+  "nmos_on": {
+    "model": "mlp",
+    "file": "nmos_on/mlp_ensemble.joblib",
+    "setting": "64x64x64 tanh, L-BFGS, alpha 1e-06",
+    "ensemble_size": 3,
+    "final_model": "MLP (neural network), ensemble of 3 (64x64x64 tanh, L-BFGS, alpha 1e-06)",
+    "test_median_err_%": 0.4877,
+    "test_p95_err_%": 2.81,
+    "test_mean_err_%": 1.333
+  },
+  "nmos_off": {
+    "model": "mlp",
+    "file": "nmos_off/mlp_ensemble.joblib",
+    "setting": "64x64x64 tanh, L-BFGS, alpha 1e-05",
+    "ensemble_size": 3,
+    "final_model": "MLP (neural network), ensemble of 3 (64x64x64 tanh, L-BFGS, alpha 1e-05)",
+    "test_median_err_%": 0.4872,
+    "test_p95_err_%": 4.164,
+    "test_mean_err_%": 2.553
+  },
+  "pmos_on": {
+    "model": "mlp",
+    "file": "pmos_on/mlp_ensemble.joblib",
+    "setting": "64x64x64 tanh, L-BFGS, alpha 1e-06",
+    "ensemble_size": 3,
+    "final_model": "MLP (neural network), ensemble of 3 (64x64x64 tanh, L-BFGS, alpha 1e-06)",
+    "test_median_err_%": 0.368,
+    "test_p95_err_%": 2.065,
+    "test_mean_err_%": 0.732
+  },
+  "pmos_off": {
+    "model": "mlp",
+    "file": "pmos_off/mlp_ensemble.joblib",
+    "setting": "64x64x64 tanh, L-BFGS, alpha 1e-05",
+    "ensemble_size": 3,
+    "final_model": "MLP (neural network), ensemble of 3 (64x64x64 tanh, L-BFGS, alpha 1e-05)",
+    "test_median_err_%": 0.463,
+    "test_p95_err_%": 4.509,
+    "test_mean_err_%": 2.066
+  },
+  "_info": {
+    "spec_fingerprint": "43eb2541a1e3",
+    "scikit-learn": "1.7.2",
+    "python": "3.14.4",
+    "error_scale_A": 1e-15,
+    "target_floor_A": 1e-17,
+    "note": "load the .joblib files with the same scikit-learn version"
+  }
+}
