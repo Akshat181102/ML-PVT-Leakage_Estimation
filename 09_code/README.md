@@ -5,9 +5,8 @@ Digital VLSI Design course project. Every script reads its settings from `config
 ## Folder
 
 ```
-Leakage_Estimation Project/
+09_code/
 ├── README.md  requirements.txt
-├── report/                     the final report (deliverable 10)
 ├── models/32nm_MGK.pm          PTM 32 nm metal-gate / high-k model file (the only input)
 ├── config.py                   assignment, ranges, seeds, SPICE options, junction geometry
 ├── sampling.py  spice_utils.py  fet.py           Part A building blocks
@@ -21,6 +20,8 @@ Leakage_Estimation Project/
 └── results/                    data check, model comparison, gate, CLA and error-analysis tables and plots
                                 (deliverables 3, 4, 6, 7, 8)
 ```
+
+`data/`, `netlists/`, `trained_models/` and `results/` are created when the scripts run. The submitted copies of these outputs are in the numbered folders next to `09_code/`, and the report is in `10_report/`.
 
 ## Steps
 
@@ -50,6 +51,17 @@ Run each command on its own and wait for it to finish before starting the next.
 - Every transistor has junction areas: AS = AD = W × Ldiff, PS = PD = 2(W + Ldiff), Ldiff = 2 Lmin = 64 nm.
 - Leakage of a gate or circuit = current drawn from VDD + current drawn from the inputs held at VDD (= static power / VDD).
 
-## Requirements
+## Requirements and operating systems
 
-ngspice (tested with ngspice-45.2) and Python 3 with the packages in `requirements.txt`. If ngspice is not on the PATH: `export NGSPICE=/path/to/ngspice`.
+You need ngspice (tested with ngspice-45.2) and Python 3 with the packages in `requirements.txt`. The scripts are the same on Linux, macOS and Windows; only the setup and the command name differ. They have been run on Ubuntu, and nothing in them is specific to one system.
+
+| | Linux (Ubuntu) | macOS | Windows |
+|---|---|---|---|
+| Install ngspice | `sudo apt install ngspice` | `brew install ngspice` | download it from ngspice.sourceforge.io and add the folder with `ngspice_con.exe` to PATH |
+| Install the Python packages | `pip install -r requirements.txt` | same | same |
+| Run a script | `python3 01_generate_transistor_data.py` | same | `python 01_generate_transistor_data.py` (or `py`) |
+| If ngspice is not found | `export NGSPICE=/path/to/ngspice` | same | PowerShell: `$env:NGSPICE="C:\path\to\ngspice_con.exe"` |
+
+If your system Python refuses `pip install`, create a virtual environment first (`python3 -m venv .venv`, then activate it). On Windows the scripts look for `ngspice_con.exe`, the console version of ngspice.
+
+The fixed seeds give the same samples and corners on every system. A different ngspice version, or retraining on another system (whose floating-point libraries differ slightly), can change the last digits of the results. The saved models give the same predictions on any system with scikit-learn 1.7.2.

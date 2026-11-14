@@ -53,7 +53,9 @@ python3 07_cla_validation.py
 python3 08_error_analysis.py
 ```
 
-Every random choice uses a fixed seed, so a rerun reproduces every number. The outputs are written inside `09_code/` (`data/`, `netlists/`, `trained_models/`, `results/`). See [`09_code/README.md`](09_code/README.md) for details.
+Every random choice uses a fixed seed, so a rerun on the same setup reproduces every number. The outputs are written inside `09_code/` (`data/`, `netlists/`, `trained_models/`, `results/`). See [`09_code/README.md`](09_code/README.md) for details.
+
+**Windows, macOS or Linux.** The scripts are the same on all three. On Windows, type `python` instead of `python3` and install ngspice from [ngspice.sourceforge.io](https://ngspice.sourceforge.io), with the folder containing `ngspice_con.exe` on PATH; on macOS, `brew install ngspice`; on Ubuntu, `sudo apt install ngspice`. [`09_code/README.md`](09_code/README.md) has the full setup for each system. Results reproduce exactly on the same setup; another ngspice version or a retrain on another system can change the last digits.
 
 ## Team
 
